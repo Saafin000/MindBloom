@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { SiPivotaltracker } from "react-icons/si";
 import { MdOutlineGroupAdd } from "react-icons/md";
@@ -48,7 +48,7 @@ export default function Features() {
               size={32}
               className="text-blue-500 mb-2"
             />
-            <p className="text-gray-700 font-semibold">Anonymous Chat</p>
+            <p className="text-gray-700 font-semibold">PurrsonaTalk</p>
           </div>
 
           <div
@@ -72,7 +72,7 @@ export default function Features() {
             className="flex flex-col items-center cursor-pointer hover:opacity-80"
           >
             <IoIosJournal size={32} className="text-pink-500 mb-2" />
-            <p className="text-gray-700 font-semibold">AI Journal</p>
+            <p className="text-gray-700 font-semibold">My Diary</p>
           </div>
         </div>
       </div>

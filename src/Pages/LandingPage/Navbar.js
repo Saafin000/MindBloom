@@ -95,7 +95,7 @@ export default function Navbar() {
               onClick={() => handleLinkClick("/journal")}
               className="hover:text-green-600 cursor-pointer"
             >
-              Journal
+              My Diary
             </li>
             <li
               onClick={() => handleLinkClick("/community")}

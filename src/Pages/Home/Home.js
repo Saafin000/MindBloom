@@ -6,6 +6,8 @@ import axios from "axios";
 const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [emotion, setEmotion] = useState(null);
+  const [face, setFace] = useState(null);
 
   // Fetch user profile from backend
   useEffect(() => {
@@ -27,6 +29,12 @@ const Home = () => {
         }
       })
       .catch(() => navigate("/joinus"));
+
+    // Load captured face & emotion from localStorage
+    const savedEmotion = localStorage.getItem("detectedEmotion");
+    const savedFace = localStorage.getItem("capturedFace");
+    if (savedEmotion) setEmotion(savedEmotion);
+    if (savedFace) setFace(savedFace);
   }, [navigate]);
 
   return (
@@ -39,10 +47,12 @@ const Home = () => {
             <h2 className="text-xl font-semibold text-gray-800">
               Hello, {user ? user.email.split("@")[0] : "Loading..."}
             </h2>
-            <p className="text-gray-600 mt-2 text-lg">You seem stressed.</p>
+            <p className="text-gray-600 mt-2 text-lg">
+              You seem {emotion || "neutral"}.
+            </p>
           </div>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6DBpQ7z1YI9YkxqHRiBsFWIzZU1Mo11EGA&s"
+            src={face || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6DBpQ7z1YI9YkxqHRiBsFWIzZU1Mo11EGA&s"}
             alt="User"
             className="w-20 h-20 rounded-full border-4 border-white shadow"
             style={{ marginLeft: "300px" }}

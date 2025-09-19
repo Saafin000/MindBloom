@@ -1,4 +1,3 @@
-// Hero.js
 import React, { useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import { IoChatbubbleOutline } from "react-icons/io5";
@@ -8,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function Hero() {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"));
   const [showAuth, setShowAuth] = useState(false);
-  const [redirectPath, setRedirectPath] = useState("/home");
+  const [redirectPath, setRedirectPath] = useState(null); // start as null
   const navigate = useNavigate();
 
   // Handles navigation or login modal
@@ -25,7 +24,12 @@ export default function Hero() {
   const handleLogin = () => {
     setLoggedIn(true);
     setShowAuth(false);
-    navigate(redirectPath); // Redirect to saved path
+    if (redirectPath) {
+      navigate(redirectPath); // Redirect to the path user clicked
+      setRedirectPath(null);  // reset
+    } else {
+      navigate("/home"); // fallback
+    }
   };
 
   return (
@@ -38,7 +42,7 @@ export default function Hero() {
         <div className="flex flex-col gap-4 mt-6 items-center">
           {/* Camera Button */}
           <button
-            onClick={() => handleAction("/camera")}
+            onClick={() => handleAction("/camera")} // redirects here after login
             className="bg-blue-200 text-blue-600 font-semibold py-2 rounded-full flex items-center justify-center gap-2 w-72 border border-transparent hover:bg-blue-300"
           >
             <FaCamera size={20} />
